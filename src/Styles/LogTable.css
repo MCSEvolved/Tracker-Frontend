@@ -1,0 +1,20 @@
+table, td, th {
+    border: 1px solid;
+}
+
+td, th {
+    padding: 4px;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td:hover {
+    overflow: visible;
+    white-space: normal;
+    z-index: 1;
+}
+

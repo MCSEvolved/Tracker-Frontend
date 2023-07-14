@@ -1,4 +1,4 @@
-import App from "./App";
+import App from "./Components/App";
 import 'mcs-navbar';
 export default function Layout() {
     return (
