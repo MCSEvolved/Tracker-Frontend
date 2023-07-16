@@ -17,6 +17,8 @@
     "mcs-navbar": "github:MCSEvolved/Navbar",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.1",
+    "react-tooltip": "^5.18.0",
     "svelte-preprocess-react": "^0.15.0"
   },
   "devDependencies": {
