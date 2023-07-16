@@ -1,6 +1,5 @@
 import LogTable from "./LogTable";
 import LogTableControls from "./LogTableControls";
-import "../Styles/LogContainer.css"
 
 type Props = {
     connection: signalR.HubConnection | null
@@ -9,7 +8,7 @@ type Props = {
 export default function LogContainer({ connection }: Props) {
     
     return (
-        <div id="logContainer" className="test">
+        <div id="logContainer">
             <LogTableControls />
             <LogTable connection={connection}/>
         </div>

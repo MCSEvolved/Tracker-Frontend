@@ -2,7 +2,7 @@ export default function LogTableControls() {
 
     return (
         <div>
-            Controls
+            Log table controls
         </div>
     )
 }

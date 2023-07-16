@@ -2,6 +2,7 @@ import LogContainer from "./LogContainer";
 import ConnectionDisplay from "./connectionDisplay";
 import { useAuth } from "../Hooks/useAuth";
 import useConnection from "../Hooks/useConnection";
+import MainContent from "./MainContent";
 
 export default function App() {
     const { pending, isSignedIn, user } = useAuth();
@@ -21,7 +22,7 @@ export default function App() {
     return (
         <>
             <ConnectionDisplay connectionState={connectionState} />
-            <LogContainer connection={connection} />
+            <MainContent connection={connection} />
         </>
     )
 }
