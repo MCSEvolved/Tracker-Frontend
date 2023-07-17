@@ -8,9 +8,9 @@ const INITIAL_CONNECTION_STATE: ConnectionState = {
     status: HubConnectionState.Disconnected
 }
 
-const connectionContext = createContext<ConnectionState>(INITIAL_CONNECTION_STATE);
+export const connectionContext = createContext<ConnectionState>(INITIAL_CONNECTION_STATE);
 
-const ConnectionContextProvider = ({children}: {children: React.ReactNode}) => {
+export const ConnectionContextProvider = ({children}: {children: React.ReactNode}) => {
     const { connection, status }: ConnectionState = useConnection();
     return (
         <connectionContext.Provider value={{ connection, status } as ConnectionState}>
@@ -18,7 +18,4 @@ const ConnectionContextProvider = ({children}: {children: React.ReactNode}) => {
         </connectionContext.Provider>
     )
 };
-
-export { connectionContext, ConnectionContextProvider };
-
 
