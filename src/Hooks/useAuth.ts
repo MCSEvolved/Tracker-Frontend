@@ -18,7 +18,6 @@ export function useAuth() {
 
     useEffect(() => {
         const unsubscribe = getAuth().onAuthStateChanged(user => {
-            console.log("setting auth state")
             setAuthState({
                 isSignedIn: !!user,
                 pending: false,
