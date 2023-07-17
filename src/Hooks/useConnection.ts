@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as signalR from "@microsoft/signalr";
-import { useAuth } from "./useAuth";
+import { authContext } from "../Contexts/AuthContext";
+import { AuthState } from "./useAuth";
+import { ConnectionState } from "../Types/ConnectionState";
 
 export default function useConnection() {
-    const { pending, isSignedIn, user } = useAuth();
+
+    const {pending, isSignedIn, user} : AuthState = useContext(authContext);
     const [connection, setConnection] = useState<signalR.HubConnection | null>(null);
-    const [connectionState, setConnectionState] = useState<signalR.HubConnectionState>(signalR.HubConnectionState.Disconnected);
+    const [status, setConnectionStatus] = useState<signalR.HubConnectionState>(signalR.HubConnectionState.Disconnected);
 
 
     useEffect(() => {
@@ -32,22 +35,22 @@ export default function useConnection() {
         if (!connection) return;
 
         connection.onreconnecting(() => {
-            setConnectionState(signalR.HubConnectionState.Reconnecting);
+            setConnectionStatus(signalR.HubConnectionState.Reconnecting);
         });
 
         connection.onreconnected(() => {
-            setConnectionState(signalR.HubConnectionState.Connected);
+            setConnectionStatus(signalR.HubConnectionState.Connected);
         });
 
         connection.onclose(() => {
-            setConnectionState(signalR.HubConnectionState.Disconnected);
+            setConnectionStatus(signalR.HubConnectionState.Disconnected);
         });
 
         console.log("Connecting to websocket");
 
         connection.start()
             .then(() => {
-                setConnectionState(signalR.HubConnectionState.Connected);
+                setConnectionStatus(signalR.HubConnectionState.Connected);
             })
             .catch(err => {
                 console.error(err);
@@ -58,5 +61,5 @@ export default function useConnection() {
         }
     }, [connection]);
 
-    return [connection, connectionState] as [signalR.HubConnection | null, signalR.HubConnectionState];
+    return { connection: connection, status: status} as ConnectionState;
 }

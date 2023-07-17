@@ -1,12 +1,12 @@
 import { HubConnectionState } from "@microsoft/signalr";
-import { useRef } from "react";
+import { useRef, useContext} from "react";
 import { Tooltip } from "react-tooltip";
+import { connectionContext } from "../Contexts/ConnectionContext";
+import { ConnectionState } from "../Types/ConnectionState";
 
-type Props = {
-    connectionState: HubConnectionState
-}
+export default function ConnectionDisplay() {
 
-export default function ConnectionDisplay({ connectionState }: Props) {
+    const { status }: ConnectionState = useContext(connectionContext);
 
     const getConnectionColor = (connectionState: HubConnectionState) => {
         switch (connectionState) {
@@ -39,7 +39,7 @@ export default function ConnectionDisplay({ connectionState }: Props) {
     }
 
 
-    const connectionColor = getConnectionColor(connectionState);
+    const connectionColor = getConnectionColor(status);
     const connectionStateElementRef = useRef<HTMLDivElement>(null);
     if (connectionStateElementRef.current) {
         connectionStateElementRef.current.style.backgroundColor = connectionColor;
@@ -51,7 +51,7 @@ export default function ConnectionDisplay({ connectionState }: Props) {
                 ref={connectionStateElementRef} 
                 className="w-4 h-4 rounded-full"
                 data-tooltip-id="connectionStateTooltip"
-                data-tooltip-content={getConnectionStateTooltipContent(connectionState)}
+                data-tooltip-content={getConnectionStateTooltipContent(status)}
             />
             <Tooltip id="connectionStateTooltip" />
         </>

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { AuthState, useAuth } from "./useAuth";
+import { AuthState } from "./useAuth";
 import axios from "axios";
 import { mapLogs } from "../Utils/logUtils";
 import { Log } from "../Types/Log";
+import { authContext } from "../Contexts/AuthContext";
+import { useContext } from "react";
 
 export default function useLogs() {
-
-    const { pending, isSignedIn, user }: AuthState = useAuth();
+    const { pending, isSignedIn, user }: AuthState = useContext(authContext);
 
     const [logs, setLogs] = useState<Log[]>([]);
     const [logsLoading, setLogsLoading] = useState<boolean>(true);

@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { Computer } from "../Types/Computer";
-import { AuthState, useAuth } from "./useAuth";
+import { AuthState } from "./useAuth";
 import axios from "axios";
+import { authContext } from "../Contexts/AuthContext";
+import { useContext } from "react";
 
-export function useComputers() {
+export function useComputers(systemId?: number) {
     const [computers, setComputers] = useState<Computer[]>([]);
     const [computersLoading, setComputersLoading] = useState<boolean>(true);
 
-    const { pending, isSignedIn, user }: AuthState = useAuth();
-
+    const { pending, isSignedIn, user }: AuthState = useContext(authContext)
+    
     useEffect(() => {
         (async () => {
             if (pending || !isSignedIn || !user) return;
@@ -19,7 +21,7 @@ export function useComputers() {
                 headers: { "Authorization": "Bearer " + TOKEN }
             };
 
-            const URL = import.meta.env.VITE_SERVER_URL + "computer/get/all";
+            const URL = createURL(systemId)
 
             axios.get(URL, CONFIG)
                 .then(res => {
@@ -33,4 +35,12 @@ export function useComputers() {
     }, [pending, isSignedIn, user])
 
     return [computers, computersLoading] as [Computer[], boolean];
+}
+
+const createURL = (systemId?: number) => {
+    if (systemId) {
+        return import.meta.env.VITE_SERVER_URL + "computer/get/by-system?" + new URLSearchParams({ systemId: systemId.toString() });
+    } else {
+        return import.meta.env.VITE_SERVER_URL + "computer/get/all";
+    }
 }

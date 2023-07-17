@@ -14,10 +14,11 @@ const INITIAL_STATE: AuthState = {
 }
 
 export function useAuth() {
-    const [authState, setAuthState] = useState(INITIAL_STATE)
+    const [authState, setAuthState] = useState<AuthState>(INITIAL_STATE);
 
     useEffect(() => {
         const unsubscribe = getAuth().onAuthStateChanged(user => {
+            console.log("setting auth state")
             setAuthState({
                 isSignedIn: !!user,
                 pending: false,

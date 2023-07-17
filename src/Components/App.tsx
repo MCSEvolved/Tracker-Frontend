@@ -1,28 +1,16 @@
-import LogContainer from "./LogContainer";
-import ConnectionDisplay from "./connectionDisplay";
-import { useAuth } from "../Hooks/useAuth";
-import useConnection from "../Hooks/useConnection";
+import ConnectionDisplay from "./ConnectionDisplay";
 import MainContent from "./MainContent";
+import { AuthContextProvider } from "../Contexts/AuthContext";
+import { ConnectionContextProvider } from "../Contexts/ConnectionContext";
 
 export default function App() {
-    const { pending, isSignedIn, user } = useAuth();
-
-    const [ connection, connectionState ] = useConnection();
-
-    if (pending) return;
-
-    if (!isSignedIn || !user) {
-        return (
-            <div>
-                <p>This app is not available for you. Please sign in.</p>
-            </div>
-        )
-    }
-    
     return (
-        <>
-            <ConnectionDisplay connectionState={connectionState} />
-            <MainContent connection={connection} />
-        </>
+        <AuthContextProvider>
+            <ConnectionContextProvider>
+                <ConnectionDisplay />
+                <MainContent />
+            </ConnectionContextProvider>
+        </AuthContextProvider>
+        
     )
 }
