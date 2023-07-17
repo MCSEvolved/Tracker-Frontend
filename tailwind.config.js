@@ -22,6 +22,10 @@ export default {
 
       'MCS-White': '#ffffff',
 
+      'MCS-Black': '#000000',
+
+      'MCS-grey': '#6b717d',
+
     } 
   },
   plugins: [],
