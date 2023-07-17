@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 body {
-    @apply bg-MCS-DarkBlue
+    @apply bg-MCS-DarkBlue;
+    @apply overflow-hidden;
 }
