@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
     @apply bg-MCS-DarkBlue;
-    @apply overflow-hidden;
+    @apply h-full;
 }
