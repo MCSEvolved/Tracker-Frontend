@@ -2,7 +2,7 @@ export type Computer = {
     id: number;
     label: string;
     systemId: number;
-    computerDevice: DeviceType;
+    device: DeviceType;
     fuelLimit: number;
     fuelLevel: number;
     status: string;
