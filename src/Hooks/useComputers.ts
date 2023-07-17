@@ -5,7 +5,7 @@ import axios from "axios";
 import { authContext } from "../Contexts/AuthContext";
 import { useContext } from "react";
 
-export function useComputers(systemId?: number) {
+export function useComputers(systemId?: number | string) {
     const [computers, setComputers] = useState<Computer[]>([]);
     const [computersLoading, setComputersLoading] = useState<boolean>(true);
 
@@ -37,7 +37,7 @@ export function useComputers(systemId?: number) {
     return [computers, computersLoading] as [Computer[], boolean];
 }
 
-const createURL = (systemId?: number) => {
+const createURL = (systemId?: number | string) => {
     if (systemId) {
         return import.meta.env.VITE_SERVER_URL + "computer/get/by-system?" + new URLSearchParams({ systemId: systemId.toString() });
     } else {

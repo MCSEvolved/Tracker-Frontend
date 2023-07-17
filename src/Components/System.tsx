@@ -1,19 +1,18 @@
 import { useParams } from "react-router-dom";
-import useSystems from "../Hooks/useSystems";
 import { useComputers } from "../Hooks/useComputers";
+import useSystem from "../Hooks/useSystem";
 
 export default function System() {
     const params = useParams();
     if (!params.systemId) return <div>Invalid system ID</div>
 
-    const [systems, systemLoading] = useSystems(params.systemId);
-    const [computers, computersLoading] = useComputers();
+    const [system, systemLoading] = useSystem(params.systemId);
+    const [computers, computersLoading] = useComputers(params.systemId);
 
-    if (systemLoading || computersLoading) return <div>Loading...</div>
+    if (systemLoading) return <div>Loading system...</div>
+    if (computersLoading) return <div>Loading computers...</div>
 
-    if (!systems[0]) return <div>Invalid system ID</div>
-
-    const system = systems[0];
+    if (!system) return <div>System not found</div>
 
     return (
         <div>

@@ -3,7 +3,7 @@ import { System } from "../Types/System";
 import axios from "axios";
 import { authContext } from "../Contexts/AuthContext";
 
-export default function useSystems(systemId?: number | string) {
+export default function useSystems() {
     const { pending, isSignedIn, user } = useContext(authContext);
 
     const [systems, setSystems] = useState<System[]>([]);
@@ -13,7 +13,7 @@ export default function useSystems(systemId?: number | string) {
         (async () => {
             if (pending || !isSignedIn || !user) return;
 
-            const URL = createURL(systemId);
+            const URL = createURL();
 
             const CONFIG = {
                 headers: {
@@ -35,8 +35,6 @@ export default function useSystems(systemId?: number | string) {
     return [systems, systemsLoading] as [System[], boolean];
 }
 
-const createURL = (systemId?: number | string) => {
-    if (!systemId) return import.meta.env.VITE_MCS_API_URL + "system/get/all";
-
-    return import.meta.env.VITE_MCS_API_URL + "system/get/by-id?" + new URLSearchParams({ id: systemId.toString() });
+const createURL = () => {
+    return import.meta.env.VITE_MCS_API_URL + "system/get/all";
 }
