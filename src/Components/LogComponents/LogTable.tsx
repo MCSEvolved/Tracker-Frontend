@@ -1,15 +1,12 @@
-import { Log } from "../Types/Log"
-import "../Styles/LogTable.css"
-import useLogs from "../Hooks/useLogs";
-import { mapLog } from "../Utils/logUtils";
+import { Log } from "../../Types/Log"
+import "../../Styles/LogTable.css"
+import useLogs from "../../Hooks/useLogs";
+import { mapLog } from "../../Utils/logUtils";
 import { useEffect } from "react";
+import { connectionContext } from "../../Contexts/ConnectionContext";
+import { useContext } from "react";
 
-type Props = {
-    connection: signalR.HubConnection | null
-}
-
-export default function LogTable({ connection }: Props) {
-    const [logs, logsLoading] = useLogs();
+export default function LogTable() {
 
     function createRow(log: Log) {
         const row = document.createElement("tr");
@@ -18,30 +15,34 @@ export default function LogTable({ connection }: Props) {
         const contentCell = document.createElement("td");
         const timeCell = document.createElement("td");
         const typeCellText = document.createElement("p");
-
+        
         typeCellText.innerText = log.type;
         typeCellText.style.color = log.getTypeColor();
-
+        
         typeCell.appendChild(typeCellText);
         typeCell.className = "w-20";
-
+        
         senderCell.innerText = log.getSenderDisplayName();
         senderCell.className = "w-40";
-
+        
         contentCell.innerText = log.content;
         contentCell.className = "content-overflow";
-
+        
         timeCell.innerText = log.creationTime.toLocaleTimeString('it-IT');
         timeCell.className = "w-20 text-center";
-
+        
         row.appendChild(typeCell);
         row.appendChild(senderCell);
         row.appendChild(contentCell);
         row.appendChild(timeCell);
-
+        
         return row;
     }
 
+    const [logs, logsLoading] = useLogs();
+
+    const { connection } = useContext(connectionContext);
+    
     useEffect(() => {
         if (!connection) return;
 
