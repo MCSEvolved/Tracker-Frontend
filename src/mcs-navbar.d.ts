@@ -4,6 +4,7 @@ declare namespace JSX {
     interface IntrinsicElements {
         "mcs-navbar": {
             "logoSrc": string,
+            "redirect": string,
         }
     }
 }
