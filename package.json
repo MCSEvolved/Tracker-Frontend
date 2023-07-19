@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
     "@microsoft/signalr": "^7.0.9",
     "axios": "^1.4.0",
     "cntl": "^1.0.0",
