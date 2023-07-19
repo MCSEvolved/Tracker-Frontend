@@ -49,7 +49,7 @@ export default function ConnectionDisplay() {
         <>
             <div 
                 ref={connectionStateElementRef} 
-                className="w-4 h-4 rounded-full"
+                className="w-4 h-4 rounded-full absolute ml-8 mt-7"
                 data-tooltip-id="connectionStateTooltip"
                 data-tooltip-content={getConnectionStateTooltipContent(status)}
             />
