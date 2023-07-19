@@ -8,6 +8,25 @@ export type Computer = {
     status: string;
     lastUpdate: number;
     hasModem: boolean;
+    computerLocation?: ComputerLocation;
+}
+
+export type ComputerLocation = {
+    computerId: number;
+    coordinates: {
+        x: number;
+        y: number;
+        z: number;
+    }
+    createdOn: number;
+    dimension: Dimension;
+}
+
+export enum Dimension {
+    Overworld = 'Overworld',
+    Nether = 'Nether',
+    End = 'End',
+    Unknown = 'Unknown'
 }
 
 export enum DeviceType {
