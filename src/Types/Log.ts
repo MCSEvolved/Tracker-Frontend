@@ -24,7 +24,7 @@ export class Log {
             case LogType.Warning:
                 return 'orange';
             case LogType.Info:
-                return 'black';
+                return 'green';
             case LogType.Debug:
                 return 'gray';
             case LogType['Out of Fuel']:
@@ -35,7 +35,7 @@ export class Log {
     public getSenderDisplayName() {
         if (this.source === LogSource.Computer) {
             return 'Computer'
-        } else if (this.source === LogSource['Pocket Computer']) {
+        } else if (this.source === LogSource.Pocket) {
             return 'Pocket Computer'
         } else if (this.source === LogSource.Turtle) {
             return 'Turtle'
@@ -63,5 +63,5 @@ export enum LogSource {
     'Computer' = 'Computer',
     'System' = 'System',
     'Turtle' = 'Turtle',
-    'Pocket Computer' = 'Pocket Computer',
+    'Pocket' = 'Pocket',
 }
