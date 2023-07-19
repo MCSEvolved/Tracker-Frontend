@@ -23,6 +23,13 @@ export default function ComputerSearch() {
     }, [computersLoading])
 
     const findInComputers = (searchTerm: string) => {
+        //If the search term is a number
+        if (!isNaN(Number(searchTerm))) {
+            return computers.filter(computer => {
+                return computer.id.toString().includes(searchTerm);
+            });
+        }
+
         return computers.filter(computer => {
             return computer.label.toLowerCase().includes(searchTerm.toLowerCase());
         });
