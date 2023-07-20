@@ -5,7 +5,7 @@ type Props = {
 }
 
 export default function LogTableRows({ logs }: Props) {
-    return logs.map((log, index) => {
+    return logs.map((log) => {
         return (
             <tr key={log.id}>
                 <td className="w-20"><p style={{ "color": log.getTypeColor() }}>{log.type}</p></td>
