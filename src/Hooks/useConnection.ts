@@ -46,8 +46,7 @@ export default function useConnection() {
             setConnectionStatus(signalR.HubConnectionState.Disconnected);
         });
 
-        console.log("Connecting to websocket");
-
+        setConnectionStatus(signalR.HubConnectionState.Connecting);
         connection.start()
             .then(() => {
                 setConnectionStatus(signalR.HubConnectionState.Connected);
