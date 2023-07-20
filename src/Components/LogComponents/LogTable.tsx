@@ -24,7 +24,6 @@ export default function LogTable({logFilters}: Props) {
     const [logs, logsLoading, setLogs] = useLogs(logFilters);
 
     const handleNewLog = (data: any) => {
-        console.log("Received new log")
         const log: Log = mapLog(data);
 
         if (!checkIfLogMatchesFilters(log, logFilters)) return;
@@ -36,11 +35,9 @@ export default function LogTable({logFilters}: Props) {
         })
     }
 
-    console.log("Rendering log table")
     const { connection } = useContext(connectionContext);
     
     useEffect(() => {
-        console.log("running effect")
         if (!connection || !logFilters.receiveLiveLogs) return;
 
         connection.on("NewMessage", handleNewLog);
