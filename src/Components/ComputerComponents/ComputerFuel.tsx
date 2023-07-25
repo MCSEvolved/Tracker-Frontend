@@ -1,4 +1,4 @@
-import "../Styles/ComputerFuel.css"
+import "../../Styles/ComputerFuel.css"
 
 export default function SourceIDSearchBar() {
     return (
