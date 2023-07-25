@@ -25,14 +25,14 @@ export default function ComputerDisplay({ computerId }: Props) {
     useEffect(() => {
         if (!connection) return;
 
-        connection.on("NewLocation", handleNewComputer);
+        connection.on("NewComputer", handleNewComputer);
 
         return () => {
-            connection.off("NewLocation", handleNewComputer);
+            connection.off("NewComputer", handleNewComputer);
         }
     }, [connection])
 
-    if (computerLoading) return <div>Loading...</div>
+    if (computerLoading) return;
 
     return (
         <div id="computer" className=" w-80 h-32 m-10  bg-MCS-LightBlue flex justify-between">
