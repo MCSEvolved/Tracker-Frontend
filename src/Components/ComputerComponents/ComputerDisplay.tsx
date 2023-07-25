@@ -1,10 +1,10 @@
 import ComputerFuel from "./ComputerFuel";
 import ComputerInfo from "./ComputerInfo";
-import { useComputer } from "../Hooks/useComputer";
+import { useComputer } from "../../Hooks/useComputer";
 import ComputerLocationDisplay from "./ComputerLocationDisplay";
-import { Computer } from "../Types/Computer";
+import { Computer } from "../../Types/Computer";
 import { useContext, useEffect } from "react";
-import { connectionContext } from "../Contexts/ConnectionContext";
+import { connectionContext } from "../../Contexts/ConnectionContext";
 
 
 type Props = {

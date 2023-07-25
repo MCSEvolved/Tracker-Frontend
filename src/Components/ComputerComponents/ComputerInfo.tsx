@@ -1,4 +1,4 @@
-import { Computer } from "../Types/Computer";
+import { Computer } from "../../Types/Computer";
 
 type Props = {
     computer: Computer

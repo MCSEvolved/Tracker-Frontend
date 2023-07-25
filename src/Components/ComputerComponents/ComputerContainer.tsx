@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import ComputerSearch from "./ComputerSearch/ComputerSearch";
-import SystemList from "./SystemList";
-import System from "./System";
+import ComputerSearch from "../ComputerSearch/ComputerSearch";
+import SystemList from "../ComputerComponents/SystemList"
+import System from "../ComputerComponents/System";
 
 export default function ComputerContainer() {
     return (

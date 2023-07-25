@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useComputers } from "../Hooks/useComputers";
-import useSystem from "../Hooks/useSystem";
+import { useComputers } from "../../Hooks/useComputers";
+import useSystem from "../../Hooks/useSystem";
 import ComputerDisplay from "./ComputerDisplay";
 
 export default function System() {

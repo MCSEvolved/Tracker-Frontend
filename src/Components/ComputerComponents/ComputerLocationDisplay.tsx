@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
-import { connectionContext } from "../Contexts/ConnectionContext"
-import { ComputerLocation } from "../Types/Computer";
+import { connectionContext } from "../../Contexts/ConnectionContext"
+import { ComputerLocation } from "../../Types/Computer";
 
 type Props = {
     computerId: number

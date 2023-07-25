@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogContainer from "./LogComponents/LogContainer";
-import ComputerContainer from "./ComputerContainer";
+import ComputerContainer from "./ComputerComponents/ComputerContainer";
 import Home from "./Home";
 import MainContentNavigation from "./MainContentNavigation";
-import ConnectionDisplay from "./ConnectionDisplay";
+import ConnectionDisplay from "./Extra/ConnectionDisplay";
 
 export default function MainContent() {
     return (

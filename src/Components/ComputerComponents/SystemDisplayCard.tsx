@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { System } from "../Types/System";
+import { System } from "../../Types/System";
 
 export default function SystemDisplayCard(system: System) {
     const navigate = useNavigate()

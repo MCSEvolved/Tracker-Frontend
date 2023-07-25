@@ -1,8 +1,8 @@
 import { HubConnectionState } from "@microsoft/signalr";
 import { useRef, useContext} from "react";
 import { Tooltip } from "react-tooltip";
-import { connectionContext } from "../Contexts/ConnectionContext";
-import { ConnectionState } from "../Types/ConnectionState";
+import { connectionContext } from "../../Contexts/ConnectionContext";
+import { ConnectionState } from "../../Types/ConnectionState";
 
 export default function ConnectionDisplay() {
 

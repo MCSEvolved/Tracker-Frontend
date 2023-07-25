@@ -1,4 +1,4 @@
-import useSystems from "../Hooks/useSystems";
+import useSystems from "../../Hooks/useSystems";
 import SystemDisplayCard from "./SystemDisplayCard";
 
 export default function SystemList() {
