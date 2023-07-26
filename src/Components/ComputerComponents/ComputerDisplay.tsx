@@ -35,7 +35,7 @@ export default function ComputerDisplay({ computerId }: Props) {
     if (computerLoading) return;
 
     return (
-        <div id="computer" className=" w-80 h-32 m-10 bg-MCS-Blue flex">
+        <div id="computer" className=" w-80 h-32 m-8 bg-MCS-Blue flex">
             <div className="w-28 h-32 flex justify-center items-center">
                 <img src="https://placehold.co/75x75?text=icon" alt="Computer Icon" />
             </div>

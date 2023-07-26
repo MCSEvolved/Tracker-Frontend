@@ -18,8 +18,7 @@ export default function System() {
     return (
         <div id="system">
             <h1>{system.displayName}</h1>
-            <h2>Computers</h2>
-            <div className="">
+            <div className="flex flex-wrap basis-0">
                 {computers.map(computer => 
                     <ComputerDisplay key={computer.id} computerId={computer.id} />
                 )}
