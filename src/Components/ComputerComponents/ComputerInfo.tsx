@@ -1,6 +1,6 @@
 import { Tooltip } from "react-tooltip";
 import { Computer } from "../../Types/Computer";
-import { useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 
 type Props = {
     computer: Computer
@@ -9,9 +9,24 @@ type Props = {
 export default function computerInfo({ computer }: Props) {
     const labelElement = useRef<HTMLParagraphElement>(null);
 
-    if (isLastUpdateMoreThanTwoSecondsAgo(computer.lastUpdate) && labelElement.current) {
-        labelElement.current.style.color = "red";
-    }
+    useEffect(() => {
+        if (isMoreThanFiveSecondsAgo(computer.lastUpdate)) {
+            setLabelColor(labelElement, "red");
+        } else {
+            setLabelColor(labelElement, "white");
+        }
+
+        // If component is not rerenderd in 5 seconds, set label color to red
+        const timeOut = setTimeout(() => {
+            if (!labelElement.current) return;
+            setLabelColor(labelElement, "red");
+        }, 5000)
+
+        return () => {
+            clearTimeout(timeOut);
+        }
+    }, [computer])
+
 
     return (
         <div id="computerInfo">
@@ -34,7 +49,13 @@ export default function computerInfo({ computer }: Props) {
     )
 }
 
-const isLastUpdateMoreThanTwoSecondsAgo = (lastUpdate: number) => {
+const setLabelColor = (labelElement: RefObject<HTMLParagraphElement>, color: string) => {
+    if (!labelElement.current) return;
+
+    labelElement.current.style.color = color;
+}
+
+const isMoreThanFiveSecondsAgo = (lastUpdate: number) => {
     const difference = (new Date()).getTime() - lastUpdate;
-    return difference > 2000;
+    return difference > 5000;
 }
