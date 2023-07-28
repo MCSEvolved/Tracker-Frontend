@@ -1,0 +1,19 @@
+td, th {
+    padding: 4px;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td:hover {
+    overflow: visible;
+    white-space: normal;
+    z-index: 1;
+}

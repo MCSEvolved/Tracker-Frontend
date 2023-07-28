@@ -7,6 +7,7 @@ export default function ComputerSearch() {
     const [computers, computersLoading] = useComputers();
 
     const [computersToShow, setComputersToShow] = useState<Computer[] | null>(null);
+    const [hideResults, setHideResults] = useState<boolean>(false);
 
     const searchBar = useRef<HTMLInputElement>(null); 
     if (searchBar.current) searchBar.current.focus();
@@ -21,6 +22,14 @@ export default function ComputerSearch() {
             searchBar.current.disabled = false;
         }
     }, [computersLoading])
+
+    useEffect(() => {
+        if (!hideResults || !searchBar.current) return;
+        searchBar.current.value = "";
+        setComputersToShow(null);
+        searchBar.current.blur();
+        setHideResults(false);
+    }, [hideResults])
 
     const findInComputers = (searchTerm: string) => {
         //If the search term is a number
@@ -55,7 +64,7 @@ export default function ComputerSearch() {
                 placeholder="Search for a computer..."
                 onChange={handleInput}
             />
-            <ComputerSearchResults computers={computersToShow} />
+            <ComputerSearchResults computers={computersToShow} setHideResults={setHideResults} />
         </div>
     )   
 }

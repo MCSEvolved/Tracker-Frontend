@@ -26,6 +26,11 @@ export default function useSystem(systemId: number | string) {
                     setSystemLoading(false);
                 })
                 .catch(err => {
+                    if (err.response.status === 404) {
+                        setSystem(null);
+                        setSystemLoading(false);
+                        return;
+                    }
                     console.error(err);
                 })
         })()

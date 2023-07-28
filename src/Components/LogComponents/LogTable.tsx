@@ -1,7 +1,7 @@
 import { Log } from "../../Types/Log"
 import "../../Styles/LogTable.css"
 import useLogs from "../../Hooks/useLogs";
-import { mapLog } from "../../Utils/logUtils";
+import { checkIfLogMatchesFilters, mapLog } from "../../Utils/logUtils";
 import { useEffect } from "react";
 import { connectionContext } from "../../Contexts/ConnectionContext";
 import { useContext } from "react";
@@ -10,13 +10,6 @@ import LogTableRows from "./LogTableRows";
 
 type Props = {
     logFilters: LogFilters
-}
-
-const checkIfLogMatchesFilters = (log: Log, logFilters: LogFilters) => {
-    if (!logFilters.types.includes(log.type)) return false;
-    if (!logFilters.sources.includes(log.source)) return false;
-    if (logFilters.sourceIds.length > 0 && !logFilters.sourceIds.includes(log.sourceId)) return false;
-    return true;
 }
 
 export default function LogTable({logFilters}: Props) {
@@ -47,8 +40,6 @@ export default function LogTable({logFilters}: Props) {
         }
     }, [connection])
 
-    if (logsLoading) return <p>Loading logs...</p>
-
     return (
         <table id="logTable" className="w-full mx-8 mb-8 table-fixed">
             <thead>
@@ -64,6 +55,7 @@ export default function LogTable({logFilters}: Props) {
                     logs={logs}
                 />
             </tbody>
+            {logsLoading && <div className="text-center">Loading...</div>}
         </table>
     )
 }

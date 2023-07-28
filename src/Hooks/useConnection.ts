@@ -60,5 +60,5 @@ export default function useConnection() {
         }
     }, [connection]);
 
-    return { connection: connection, status: status} as ConnectionState;
+    return { connection: connection, status: status, setStatus: setConnectionStatus} as ConnectionState;
 }

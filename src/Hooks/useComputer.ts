@@ -28,6 +28,11 @@ export function useComputer(id: number) {
                     setComputerLoading(false);
                 })
                 .catch(err => {
+                    if (err.response.status === 404) {
+                        setComputer(null);
+                        setComputerLoading(false);
+                        return;
+                    }
                     console.error(err);
                 })
         })()

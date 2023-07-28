@@ -3,10 +3,12 @@ import { useRef, useContext} from "react";
 import { Tooltip } from "react-tooltip";
 import { connectionContext } from "../../Contexts/ConnectionContext";
 import { ConnectionState } from "../../Types/ConnectionState";
+import { Popover } from "@headlessui/react";
+import ConnectionStateButton from "./ConnectionStateButton";
 
 export default function ConnectionDisplay() {
 
-    const { status }: ConnectionState = useContext(connectionContext);
+    const {status }: ConnectionState = useContext(connectionContext);
 
     const getConnectionColor = (connectionState: HubConnectionState) => {
         switch (connectionState) {
@@ -46,14 +48,22 @@ export default function ConnectionDisplay() {
     }
 
     return (
-        <>
-            <div 
-                ref={connectionStateElementRef} 
-                className="w-4 h-4 rounded-full absolute ml-8 mt-7"
-                data-tooltip-id="connectionStateTooltip"
-                data-tooltip-content={getConnectionStateTooltipContent(status)}
-            />
-            <Tooltip id="connectionStateTooltip" />
-        </>
+        <Popover className="relative">
+            <Popover.Button>      
+                <div
+                    ref={connectionStateElementRef}
+                    className="w-4 h-4 rounded-full absolute ml-8 mt-7"
+                    data-tooltip-id="connectionStateTooltip"
+                    data-tooltip-content={getConnectionStateTooltipContent(status)}
+                />
+                <Tooltip id="connectionStateTooltip" /> 
+            </Popover.Button>
+            <Popover.Panel className="absolute z-10 mt-12 ml-4">
+                <div className=" w-60 h-20 p-2 rounded-xl bg-MCS-grey ">
+                    <p className="mb-1">Connection state: {status}</p>
+                    <ConnectionStateButton />
+                </div>
+            </Popover.Panel>
+        </Popover>
     )
 }
