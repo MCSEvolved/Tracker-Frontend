@@ -34,7 +34,13 @@ export default function ComputerLocationDisplay({ computerId }: Props) {
         if (lastLocation) setLocation(lastLocation)
     }, [lastLocation])
 
-    if (lastLocationLoading || !location) return;
+    if (lastLocationLoading) return;
+
+    if (!location) return (
+        <p
+            className="text-sm"
+        >No location found</p>
+    )
 
     return (
         <p

@@ -52,7 +52,7 @@ export default function ConnectionDisplay() {
             <Popover.Button>      
                 <div
                     ref={connectionStateElementRef}
-                    className="w-4 h-4 rounded-full absolute ml-8 mt-7"
+                    className="w-4 h-4 rounded-full absolute ml-8 mt-10"
                     data-tooltip-id="connectionStateTooltip"
                     data-tooltip-content={getConnectionStateTooltipContent(status)}
                 />

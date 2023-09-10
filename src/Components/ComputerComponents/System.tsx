@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useComputers } from "../../Hooks/useComputers";
 import useSystem from "../../Hooks/useSystem";
 import ComputerDisplay from "./ComputerDisplay";
+import SystemTitle from "./SystemTitle";
 
 export default function System() {
     const params = useParams();
@@ -15,10 +16,17 @@ export default function System() {
 
     if (!system) return <div>Code 404: System not found</div>
 
+    //Computers with "manager" in their display name should be displayed first
+    computers.sort((a, b) => {
+        if (a.label.toLowerCase().includes("manager") && !b.label.toLowerCase().includes("manager")) return -1;
+        if (!a.label.toLowerCase().includes("manager") && b.label.toLowerCase().includes("manager")) return 1;
+        return 0;
+    })
+    
     return (
         <div id="system">
-            <h1>{system.displayName}</h1>
-            <div className="flex flex-wrap basis-0">
+            <SystemTitle systemName = {system.displayName} />
+            <div className="flex flex-wrap justify-center basis-0 mt-6">
                 {computers.map(computer => 
                     <ComputerDisplay key={computer.id} computerId={computer.id} />
                 )}

@@ -24,7 +24,7 @@ export default {
 
       'MCS-Black': '#000000',
 
-      'MCS-grey': '#6b717d',
+      'MCS-grey': '#536878',
 
     } 
   },

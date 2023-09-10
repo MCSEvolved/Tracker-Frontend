@@ -36,5 +36,5 @@ export default function ComputerFuel({fuelLevel, fuelLimit }: Props) {
 const setFuelMeterCapacity = (fuelLevel: number, fuelLimit: number, fuelMeterCapacity: RefObject<HTMLDivElement>) => {
     if (!fuelMeterCapacity.current) return;
     fuelMeterCapacity.current.style.width = (fuelLevel / fuelLimit * 100) + "%";
-    fuelMeterCapacity.current.style.backgroundColor = "rgb(" + (255 - (fuelLevel / fuelLimit * 255)) + ", " + (fuelLevel / fuelLimit * 255) + ", 0)";
+    fuelMeterCapacity.current.style.backgroundColor = "rgb(" + (180 - (fuelLevel / fuelLimit * 180)) + ", " + (fuelLevel / fuelLimit * 180) + ", 0)";
 }
