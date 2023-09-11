@@ -15,7 +15,6 @@ export function useLastComputerLocation(computerID: number) {
             if (pending || !isSignedIn || !user) return;
 
             const TOKEN = await user.getIdToken();
-
             const CONFIG = {
                 headers: { "Authorization": "Bearer " + TOKEN }
             };
@@ -28,7 +27,7 @@ export function useLastComputerLocation(computerID: number) {
                     setLocationLoading(false);
                 })
                 .catch(err => {
-                    if (err.response.status === 404) {
+                    if (err.response && err.response.status === 404) {
                         setLocation(null);
                         setLocationLoading(false);
                         return;

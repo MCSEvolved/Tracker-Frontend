@@ -44,7 +44,6 @@ export default function computerInfo({ computer }: Props) {
         return "Computer is online";
     }
 
-
     return (
         <div id="computerInfo">
             <p
