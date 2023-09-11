@@ -20,6 +20,10 @@ export default function ComputerDisplay({ computerId }: Props) {
         setComputer(computer)
     }
 
+    function getImageUrl(name: string) {
+        return new URL('/Images/' + name + '.png', import.meta.url).href
+    }
+
     const navigate = useNavigate();
 
     const onClick = () => {
@@ -44,7 +48,7 @@ export default function ComputerDisplay({ computerId }: Props) {
     return (
         <div id="computer" className="w-80 h-32 mx-8 mb-12 rounded-lg bg-MCS-Blue flex hover:cursor-pointer" onClick={onClick}>
             <div className="w-28 h-32 flex justify-center items-center">
-                <img className="w-24" src={"/Images/" + computer.device + ".png"} alt="Computer Icon" />
+                <img className="w-24" src={ getImageUrl(computer.device).toString() } alt="Computer Icon" />
             </div>
             <div className="p-2 ">
                 <ComputerInfo computer={computer}/>
