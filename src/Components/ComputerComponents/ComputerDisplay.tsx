@@ -21,7 +21,7 @@ export default function ComputerDisplay({ computerId }: Props) {
     }
 
     function getImageUrl(name: string) {
-        return new URL('/Images/' + name + '.png', import.meta.url).href
+        return new URL('/Tracker/Images/' + name + '.png', import.meta.url).href
     }
 
     const navigate = useNavigate();
