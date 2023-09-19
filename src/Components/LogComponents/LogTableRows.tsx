@@ -13,10 +13,12 @@ export default function LogTableRows({ logs }: Props) {
                 <td className="w-20"
                     data-tooltip-id={"logTimeTooltip" + log.id}
                     data-tooltip-content={log.creationTime.toLocaleDateString('it-IT') + " " + log.creationTime.toLocaleTimeString('it-IT')}
-                >{log.creationTime.toLocaleTimeString('it-IT')}</td>
+                >
+                    <div>{log.creationTime.toLocaleTimeString('it-IT')}</div>
+                    <Tooltip id={"logTimeTooltip" + log.id} />
+                </td>
                 <td className="w-40">{log.getSenderDisplayName()}</td>
                 <td className="content-overflow">{log.content.toString()}</td>
-                <Tooltip id={"logTimeTooltip" + log.id} />
             </tr>
         )
     })
