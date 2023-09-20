@@ -10,7 +10,7 @@ type Props = {
     warnMessage?: string
 }
 
-export default function ComputerControlButton({ computerID, displayName, commandName, warnUser, warnMessage}: Props) {
+export default function ComputerControlButton({ computerID, displayName, commandName, warnMessage}: Props) {
 
     const { pending, isSignedIn, user }: AuthState = useContext(authContext)
 
