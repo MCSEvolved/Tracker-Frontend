@@ -26,6 +26,8 @@ export default {
 
       'MCS-grey': '#536878',
 
+      'MCS-Red': '#b3344b',
+
     } 
   },
   plugins: [],

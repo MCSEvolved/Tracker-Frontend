@@ -7,15 +7,15 @@ type Props = {
     computerID: number
     displayName: string
     commandName: string
+    warnMessage?: string
 }
 
-export default function ComputerControlButton({ computerID, displayName, commandName }: Props) {
+export default function ComputerControlButton({ computerID, displayName, commandName, warnUser, warnMessage}: Props) {
 
     const { pending, isSignedIn, user }: AuthState = useContext(authContext)
 
     const sendCommand = async () => {
-
-        console.log("Sending command")
+        if (warnMessage != null && !window.confirm(warnMessage)) return;
 
         const PARAMS = new URLSearchParams({
             computerId: computerID.toString(),
@@ -34,11 +34,8 @@ export default function ComputerControlButton({ computerID, displayName, command
             }
         }
 
-        console.log("waiting...")
-
         const result = await axios.post(URL, null, CONFIG)
 
-        console.log("done waiting")
         if (result.status !== 200) {
             console.error(result)
         }

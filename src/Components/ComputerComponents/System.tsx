@@ -3,6 +3,7 @@ import { useComputers } from "../../Hooks/useComputers";
 import useSystem from "../../Hooks/useSystem";
 import ComputerDisplay from "./ComputerDisplay";
 import SystemTitle from "./SystemTitle";
+import RebootAllButton from "./RebootAllButton";
 
 export default function System() {
     const params = useParams();
@@ -26,6 +27,7 @@ export default function System() {
     return (
         <div id="system">
             <SystemTitle systemName = {system.displayName} />
+            <RebootAllButton />
             <div className="flex flex-wrap justify-center basis-0 mt-6">
                 {computers.map(computer => 
                     <ComputerDisplay key={computer.id} computerId={computer.id} />
