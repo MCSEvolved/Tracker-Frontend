@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import useLogs from "../../../Hooks/useLogs";
 import { Log, LogSource, LogType } from "../../../Types/Log";
 import { LogFilters } from "../../../Types/LogFilters";
@@ -12,7 +12,7 @@ type Props = {
 }
 
 export default function ComputerPageLogs({ computerID }: Props) {
-    const logFilters: LogFilters = {
+    const initialLogFilters: LogFilters = {
         types: [LogType.Error, LogType.Warning, LogType.Info, LogType.Debug],
         sources: [LogSource.Service, LogSource.System, LogSource.Computer, LogSource.Turtle, LogSource.Pocket],
         startRange: null,
@@ -20,6 +20,10 @@ export default function ComputerPageLogs({ computerID }: Props) {
         sourceIds: [computerID.toString()],
         receiveLiveLogs: true
     }
+
+    const [logFilters, setLogFilters] = useState<LogFilters>(initialLogFilters);
+
+    console.log("page logs rendered")
 
     const [logs, logsLoading, setLogs] = useLogs(logFilters);
 
