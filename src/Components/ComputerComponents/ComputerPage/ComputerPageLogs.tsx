@@ -21,7 +21,7 @@ export default function ComputerPageLogs({ computerID }: Props) {
         receiveLiveLogs: true
     }
 
-    const [logFilters, setLogFilters] = useState<LogFilters>(initialLogFilters);
+    const [logFilters] = useState<LogFilters>(initialLogFilters);
 
     console.log("page logs rendered")
 
