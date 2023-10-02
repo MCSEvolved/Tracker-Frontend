@@ -23,8 +23,6 @@ export default function ComputerPageLogs({ computerID }: Props) {
 
     const [logFilters] = useState<LogFilters>(initialLogFilters);
 
-    console.log("page logs rendered")
-
     const [logs, logsLoading, setLogs] = useLogs(logFilters);
 
     const handleNewLog = (data: any) => {

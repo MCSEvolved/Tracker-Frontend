@@ -9,8 +9,6 @@ export default function RebootAllButton() {
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     if (!pending && (!isSignedIn || !user || !isMCSPlayer)) {
-        console.log(pending, isSignedIn, user, isMCSPlayer)
-        console.log(" MCS Player: " + isMCSPlayer)
         disabled = true;
     }
 

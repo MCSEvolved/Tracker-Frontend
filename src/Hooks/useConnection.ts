@@ -23,7 +23,7 @@ export default function useConnection() {
                 .withUrl(url, {
                     accessTokenFactory: () => token
                 })
-                .configureLogging(signalR.LogLevel.Debug)
+                .configureLogging(signalR.LogLevel.Error)
                 .withAutomaticReconnect()
                 .build();
                 

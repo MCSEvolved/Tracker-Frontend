@@ -23,7 +23,6 @@ export function useAuth() {
         const unsubscribe = getAuth().onAuthStateChanged(user => {
             if (user) {
                 checkIsMCSPlayer(user).then((res) => {
-                    console.log("here:" + res)
                     setAuthState({
                         isSignedIn: !!user,
                         pending: false,
