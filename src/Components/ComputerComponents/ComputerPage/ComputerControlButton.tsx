@@ -1,7 +1,8 @@
-import axios from "axios"
-import { useContext } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { AuthState } from "../../../Hooks/useAuth"
 import { authContext } from "../../../Contexts/AuthContext"
+import { Tooltip } from "react-tooltip"
+import { sendCommand } from "../../../Services/CommandService"
 
 type Props = {
     computerID: number
@@ -12,39 +13,45 @@ type Props = {
 
 export default function ComputerControlButton({ computerID, displayName, commandName, warnMessage}: Props) {
 
-    const { pending, isSignedIn, user }: AuthState = useContext(authContext)
+    const { pending, isSignedIn, user, isMCSPlayer }: AuthState = useContext(authContext)
 
-    const sendCommand = async () => {
-        if (warnMessage != null && !window.confirm(warnMessage)) return;
+    const [disabled, setDisabled] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
-        const PARAMS = new URLSearchParams({
-            computerId: computerID.toString(),
-            command: commandName
-        })
-
-        const URL = import.meta.env.VITE_SERVER_URL + "command/execute?" + PARAMS
-
-        if (pending || !isSignedIn || !user) return;
-
-        const TOKEN = await user.getIdToken()
-
-        const CONFIG = {
-            headers: {
-                "Authorization": "Bearer " + TOKEN
-            }
+    useEffect(() => {
+        if (!pending && (!isSignedIn || !user || !isMCSPlayer)) {
+            setDisabled(true);
         }
+    }, [pending, isSignedIn, user, isMCSPlayer]);
 
-        const result = await axios.post(URL, null, CONFIG)
+    if (disabled && buttonRef.current) {
+        buttonRef.current.style.backgroundColor = "gray"
+        buttonRef.current.style.color = "black"
+    }
 
-        if (result.status !== 200) {
-            console.error(result)
+    const handleClick = async () => {
+        if (warnMessage && !window.confirm(warnMessage)) {
+            return;
+        }
+        const result = await sendCommand(commandName, [computerID], {pending, isSignedIn, user, isMCSPlayer})
+        if (!result.success) {
+            alert(result.message)
         }
     }
 
     return (
-        <button
-            onClick={sendCommand}
-            className="w-full h-8 bg-MCS-LightBlue rounded-lg hover:border-2 border-MCS-Black"
-        >{displayName}</button>
+        <>
+            <button
+                disabled={disabled}
+                ref={buttonRef}
+                data-tooltip-id={commandName + "ButtonTooltip"}
+                data-tooltip-content={disabled ? "This feature is disabled, because you're not an MCS player" : 
+                " This will perform a " + commandName}
+                onClick={handleClick}
+                className={"w-full h-8 bg-MCS-LightBlue rounded-lg border-MCS-Black " + (disabled ? "" : "hover:border-2")}
+            >{displayName}</button>
+            <Tooltip id={commandName + "ButtonTooltip"}
+            place="left"/>
+        </>
     )
 }

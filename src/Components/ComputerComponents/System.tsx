@@ -23,11 +23,13 @@ export default function System() {
         if (!a.label.toLowerCase().includes("manager") && b.label.toLowerCase().includes("manager")) return 1;
         return 0;
     })
+
+    const computerIDs = computers.map(computer => computer.id);
     
     return (
         <div id="system">
             <SystemTitle systemName = {system.displayName} />
-            <RebootAllButton />
+            <RebootAllButton computerIDs={computerIDs} />
             <div className="flex flex-wrap justify-center basis-0 mt-6">
                 {computers.map(computer => 
                     <ComputerDisplay key={computer.id} computerId={computer.id} />
