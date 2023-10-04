@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AuthState } from "../../Hooks/useAuth";
 import { authContext } from "../../Contexts/AuthContext";
 import { Tooltip } from "react-tooltip";
-import { sendCommand } from "../../Services/CommandService";
+import { sendCommand } from "../../Services/CommandSendingService";
 
 type Props = {
     computerIDs: number[]
