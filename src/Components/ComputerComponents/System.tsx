@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useComputers } from "../../Hooks/useComputers";
 import useSystem from "../../Hooks/useSystem";
-import ComputerDisplay from "./ComputerDisplay";
 import SystemTitle from "./SystemTitle";
 import RebootAllButton from "./RebootAllButton";
+import ComputerList from "./ComputerList";
 
 export default function System() {
     const params = useParams();
@@ -12,10 +12,14 @@ export default function System() {
     const [system, systemLoading] = useSystem(params.systemId);
     const [computers, computersLoading] = useComputers(params.systemId);
 
-    if (systemLoading) return <div>Loading system...</div>
-    if (computersLoading) return <div>Loading computers...</div>
+    if (systemLoading) return null
 
-    if (!system) return <div>Code 404: System not found</div>
+    if (!system) return (
+        <div className="text-center flex justify-center mt-14 flex-col">
+            <h1 className="text-3xl font-bold">{"System " + params.systemId + " could not be found."}</h1>
+            <h2 className="text-sm mt-2">Maybe try something else?</h2>
+        </div>
+    )
 
     //Computers with "manager" in their display name should be displayed first
     computers.sort((a, b) => {
@@ -30,11 +34,7 @@ export default function System() {
         <div id="system">
             <SystemTitle systemName = {system.displayName} />
             <RebootAllButton computerIDs={computerIDs} />
-            <div className="flex flex-wrap justify-center basis-0 mt-6">
-                {computers.map(computer => 
-                    <ComputerDisplay key={computer.id} computerId={computer.id} />
-                )}
-            </div>
+            {computersLoading ? null : <ComputerList computers={computers} />}
         </div>
     )
 }

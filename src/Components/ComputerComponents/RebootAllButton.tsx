@@ -17,8 +17,6 @@ export default function RebootAllButton({ computerIDs }: Props) {
         if (!pending && (!isSignedIn || !user || !isMCSPlayer)) {
             setDisabled(true);
         }
-    // DISABLE REBOOT ALL BUTTON FOR NOW
-        setDisabled(true);
     }, [pending, isSignedIn, user, isMCSPlayer]);
 
     if (disabled && buttonRef.current) {

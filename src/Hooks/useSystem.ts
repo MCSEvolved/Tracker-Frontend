@@ -10,7 +10,7 @@ export default function useSystem(systemId: number | string) {
 
     useEffect(() => {
         (async () => {
-            if (pending || !isSignedIn || !user) return;
+            if (pending || !isSignedIn || !user) return setSystemLoading(false);
 
             const URL = createURL(systemId);
 
@@ -26,11 +26,7 @@ export default function useSystem(systemId: number | string) {
                     setSystemLoading(false);
                 })
                 .catch(err => {
-                    if (err.response.status === 404) {
-                        setSystem(null);
-                        setSystemLoading(false);
-                        return;
-                    }
+                    setSystemLoading(false);
                     console.error(err);
                 })
         })()

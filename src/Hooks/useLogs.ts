@@ -31,6 +31,7 @@ export default function useLogs(logFilters: LogFilters) {
                     setLogsLoading(false);
                 })
                 .catch(err => {
+                    setLogsLoading(false);
                     console.error(err);
                 })
         })();
