@@ -14,7 +14,8 @@ type Props = {
 
 export default function LogTable({logFilters}: Props) {
 
-    const [logs, logsLoading, setLogs] = useLogs(logFilters);
+    // _ is a placeholder for the logs loading state which we don't need
+    const [logs, _, setLogs] = useLogs(logFilters);
 
     const handleNewLog = (data: any) => {
         const log: Log = mapLog(data);
