@@ -55,7 +55,6 @@ export default function LogTable({logFilters}: Props) {
                     logs={logs}
                 />
             </tbody>
-            {logsLoading && <div className="text-center">Loading...</div>}
         </table>
     )
 }

@@ -68,10 +68,6 @@ export default function ComputerCompleteInfo({ computer }: Props) {
         return "Computer is online";
     }
 
-
-        
-
-
     return (
         <div id="computerCompleteInfo">
             <h1 className="font-bold text-2xl text-center mb-2"
@@ -86,7 +82,7 @@ export default function ComputerCompleteInfo({ computer }: Props) {
             <p ref={systemRef}>System: Loading...</p>
             <p>{"Has modem: " + computer.hasModem}</p>
             <p>{"Computer ID: " + computer.id}</p>
-            <p>{"Fuel: " + computer.fuelLevel + "/" + computer.fuelLimit}</p>
+            {computer.fuelLevel && computer.fuelLimit ? <p>{ "Fuel: " + computer.fuelLevel + "/" + computer.fuelLimit}</p> : null}
             <ComputerFuel fuelLevel={computer.fuelLevel} fuelLimit={computer.fuelLimit} />
             <ComputerLocationDisplay computerId={computer.id} />
             <Tooltip id="computerStateTooltip" />

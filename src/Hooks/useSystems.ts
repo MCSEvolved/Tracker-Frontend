@@ -11,7 +11,7 @@ export default function useSystems() {
 
     useEffect(() => {
         (async () => {
-            if (pending || !isSignedIn || !user) return;
+            if (pending || !isSignedIn || !user) return setSystemsLoading(false);
 
             const URL = createURL();
 
@@ -27,6 +27,7 @@ export default function useSystems() {
                     setSystemsLoading(false);
                 })
                 .catch(err => {
+                    setSystemsLoading(false);
                     console.error(err);
                 })
         })()

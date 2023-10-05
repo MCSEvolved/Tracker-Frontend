@@ -29,6 +29,7 @@ export function useComputers(systemId?: number | string) {
                     setComputersLoading(false);
                 })
                 .catch(err => {
+                    setComputersLoading(false);
                     console.error(err);
                 })
         })()
