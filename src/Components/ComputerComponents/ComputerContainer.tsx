@@ -11,7 +11,8 @@ export default function ComputerContainer() {
         <div id="computerContainer" className="">
             <ComputerSearch />
             <Routes>
-                <Route path="/" element={<SystemList />} />
+                {/* Route /tracker/computers/ */}
+                <Route path="/*" element={<SystemList />} />
                 <Route path="/id/:computerId" element={<ComputerPage key={params.computerId}/> } />
                 <Route path="/system/:systemId" element={<System />} />
             </Routes>

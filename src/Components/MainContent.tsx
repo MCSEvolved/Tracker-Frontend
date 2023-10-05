@@ -1,7 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import LogContainer from "./LogComponents/LogContainer";
 import ComputerContainer from "./ComputerComponents/ComputerContainer";
-import Home from "./Home";
 import MainContentNavigation from "./MainContentNavigation";
 import ConnectionDisplay from "./Extra/ConnectionDisplay";
 
@@ -12,9 +11,9 @@ export default function MainContent() {
                 <ConnectionDisplay />
                 <MainContentNavigation />
                 <Routes>
-                    <Route path="/" element={<Home />} />
                     <Route path="/logs/*" element={<LogContainer/>} />
                     <Route path="/computers/*" element={<ComputerContainer />} />
+                    <Route path="/" element={<Navigate to="/computers" />} />
                 </Routes>
             </div>
         </BrowserRouter>
