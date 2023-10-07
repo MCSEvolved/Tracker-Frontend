@@ -5,6 +5,8 @@ type Props = {
 }
 
 export default function ComputerControls({ computerID }: Props) {
+    if (!computerID) return null;
+
     return (
         <div id="ComputerControls" className="mt-2 whitespace-nowrap flex justify-between space-x-3">
             <ComputerControlButton 

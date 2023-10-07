@@ -29,13 +29,20 @@ export default function ComputerPageRightPanel({ computerId }: Props) {
         }
     }, [connection])
 
-    if (computerLoading) return null;
-    if (!computer) return <div className="my-5 text-center">Code 404: Computer not found</div>
+    if (!computerLoading && !computer) return (
+        <div className="mr-8" style={{width: "512px"}}>
+            <h1 className="text-2xl text-center font-bold">Computer not found</h1>
+        </div>
+    )
+    if (computerLoading) return (
+        <div className="mr-8" style={{width: "512px"}}>
+        </div>
+    )
 
     return (
         <div id="computerPageRightPanel" className="mr-8" style={{width: "512px"}}>
             <ComputerCompleteInfo computer={computer} />
-            <ComputerControls computerID={computer.id} />
+            <ComputerControls computerID={computerId} />
         </div>
     )
 }

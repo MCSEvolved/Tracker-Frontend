@@ -6,6 +6,12 @@ type Props = {
 }
 
 export default function ComputerPageLogRows({ logs }: Props) {
+    if (logs.length === 0) return (
+        <tr>
+            <td colSpan={3} className="text-center">No logs found</td>
+        </tr>
+    )
+
     return logs.map((log) => {
         return (
             <tr key={log.id}>

@@ -24,7 +24,7 @@ export default function LogContainer() {
                 logFiltersState={logFilters} 
                 setLogFiltersState={setLogFilters}
             />
-            <div className="flex text-MCS-WhiteBlue overflow-hidden">
+            <div className="flex text-MCS-WhiteBlue overflow-y-scroll" style={{height: "70vh"}}>
                 <LogTable logFilters={logFilters} />
             </div>
         </div>

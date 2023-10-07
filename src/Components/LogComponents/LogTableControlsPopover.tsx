@@ -12,7 +12,7 @@ export default function LogTableControlsPopover({logFiltersState, setLogFiltersS
         <Popover className="relative mb-2">
             <Popover.Button className="bg-MCS-Blue w-28 h-8 rounded-md ml-8">Settings</Popover.Button>
 
-            <Popover.Panel className="absolute mt-1 flex justify-center w-full">
+            <Popover.Panel className="absolute z-10 mt-1 flex justify-center w-full">
                 <LogTableControls logFiltersState={logFiltersState} setLogFiltersState={setLogFiltersState}></LogTableControls>
             </Popover.Panel>
         </Popover>    

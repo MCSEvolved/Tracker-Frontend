@@ -15,7 +15,9 @@ export default function SystemList() {
     )
 
     return (
-        <div id="systemList" className="flex flex-wrap justify-center basis-96">
+        <div id="systemList" 
+            className="flex flex-wrap justify-center basis-96 overflow-y-scroll"
+            style={{height:"70vh"}}>
             {systems.map(system => (
                 <SystemDisplayCard key={system.id} {...system} />
             ))}

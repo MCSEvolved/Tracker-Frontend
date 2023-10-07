@@ -12,7 +12,7 @@ type Props = {
 export default function ComputerCompleteInfo({ computer }: Props) {
     const systemRef = useRef<HTMLParagraphElement>(null);
 
-    const [system, systemLoading] =  useSystem(computer.systemId)
+    const [system, systemLoading] = useSystem(computer.systemId)
 
     useEffect(() => {
         if (!systemRef.current) return;

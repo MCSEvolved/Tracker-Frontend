@@ -15,8 +15,9 @@ export default function ComputerList({ computers }: Props) {
     )
 
     return (
-        <div className="flex flex-wrap justify-center basis-0 mt-6">
-            {computers.map(computer => 
+        <div className="flex flex-wrap justify-center basis-0 mt-6 overflow-y-auto"
+            style={{height:"70vh"}}>
+            {computers.map(computer =>
                 <ComputerDisplay key={computer.id} computerId={computer.id} />
             )}
         </div>

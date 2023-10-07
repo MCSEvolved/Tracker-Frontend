@@ -9,7 +9,8 @@ export default function ComputerPage() {
     const computerID = Number(params.computerId);
     
     return (
-        <div key={computerID} id="computerPage" className="flex justify-between mt-4">
+        <div key={computerID} id="computerPage" 
+            className="flex justify-between mt-4">
             <ComputerPageLogs computerID={computerID} />
             <ComputerPageRightPanel computerId={computerID} />
         </div>

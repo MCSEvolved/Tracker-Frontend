@@ -5,6 +5,7 @@
 html, body {
     @apply bg-MCS-DarkBlue;
     @apply h-full;
+    @apply overflow-hidden;
 }
 
 /* width */

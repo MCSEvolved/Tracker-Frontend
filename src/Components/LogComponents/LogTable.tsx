@@ -42,10 +42,10 @@ export default function LogTable({logFilters}: Props) {
     }, [connection])
 
     return (
-        <table id="logTable" className="w-full mx-8 mb-8 table-fixed">
-            <thead>
+        <table id="logTable" className="w-full h-64 mx-8 mb-8 ">
+            <thead className="sticky top-0 bg-MCS-DarkerBlue">
                 <tr>
-                    <th className="w-20">Type</th>
+                    <th className="w-20 ">Type</th>
                     <th className="w-20">Time</th>
                     <th className="w-40">Sender</th>
                     <th>Content</th>

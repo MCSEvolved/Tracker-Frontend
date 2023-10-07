@@ -49,20 +49,13 @@ export default function ComputerPageLogs({ computerID }: Props) {
         }
     }, [connection])
 
-    if (logsLoading) return null;
-    if (logs.length === 0) return (
-        <div className="text-center flex justify-center mt-14 flex-col">
-            <h1 className="text-3xl font-bold">Could not find any logs</h1>
-        </div>
-    )
-
     return (
         <div id="computerPageLogTableContainer" 
-            className="bg-MCS-DarkBlue rounded-xl p-2 mx-8 w-full hue-rotate-0 overflow-auto"
+            className="bg-MCS-DarkBlue rounded-xl px-2 mx-8 w-full hue-rotate-0 overflow-auto"
             style={{height: "calc(100vh - 256px)"}}
             >
             <table id="computerPageLogTable" className="w-full table-fixed">
-                <thead>
+                <thead className="bg-MCS-DarkBlue sticky top-0">
                     <tr>
                         <th className="w-20">Type</th>
                         <th className="w-20">Time</th>
